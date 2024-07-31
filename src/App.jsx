@@ -15,9 +15,8 @@ import DeleteBook from "./components/DeleteBook";
 function App() {
   const [role, setRole] = useState('');
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
+    // Check the user's status, assuming you no longer need a token or cookie
     axios.get('https://e-assignment-platform-backend.onrender.com/auth/verify')
       .then(res => {
         if (res.data.login) {
