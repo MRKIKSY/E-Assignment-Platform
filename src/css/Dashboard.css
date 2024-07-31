@@ -1,37 +1,22 @@
+
 /* Dashboard.css */
+
 .dashboard {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #301934;
-  min-height: 90vh;
-  padding: 20px;
+  height: 90vh;
 }
 
 .dashboard-box {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
-  width: 90%;
-  max-width: 200px;
+  width: 200px;
   height: 70px;
   margin-top: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.7);
   text-align: center;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .dashboard {
-    padding: 10px; /* Reduced padding for smaller screens */
-  }
-
-  .dashboard-box {
-    width: 100%; /* Full width on smaller screens */
-    max-width: none; /* Remove max-width constraint */
-    height: auto; /* Auto height to accommodate content */
-    margin-top: 20px; /* Reduced margin for closer spacing */
-    padding: 15px; /* Adjust padding for smaller screens */
-  }
 }
