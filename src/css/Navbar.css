@@ -7,6 +7,7 @@
   color: #fff;
   padding-inline: 45px;
   border-bottom: 1px solid purple;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
 }
 
 .navbar-left {
@@ -34,4 +35,44 @@
 
 .navbar-link:hover {
   text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    padding-inline: 20px; /* Reduced padding for smaller screens */
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem; /* Smaller font size for brand on mobile */
+  }
+
+  .navbar-right {
+    display: none; /* Initially hide the navbar-right on smaller screens */
+  }
+
+  .navbar-menu-icon {
+    display: block; /* Show the menu icon on smaller screens */
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: auto; /* Push the icon to the right */
+  }
+
+  .navbar-expanded .navbar-right {
+    display: flex; /* Show the navbar-right when the menu is expanded */
+    flex-direction: column; /* Stack the links vertically */
+    align-items: flex-start; /* Align links to the left */
+    background-color: #301934; /* Same background color as navbar */
+    width: 100%; /* Full width */
+    position: absolute; /* Overlay on top of other content */
+    top: 55px; /* Adjust according to navbar height */
+    left: 0;
+    border-top: 1px solid purple;
+    padding: 10px 0; /* Spacing for the links */
+  }
+
+  .navbar-expanded .navbar-link {
+    margin-left: 0;
+    padding: 10px 20px; /* Add padding for touch targets */
+  }
 }
