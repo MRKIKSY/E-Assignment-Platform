@@ -5,23 +5,25 @@ import { useNavigate } from 'react-router-dom';
 const AddBook = () => {
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
-    // const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('token'); // Retrieve the token from localStorage
 
-        // Replace 'yourToken' with the actual token if needed
-        axios.post('https://e-assignment-platform-backend.onrender.com/book/add', { name, author }, {
+        axios.post('https://e-assignment-platform-backend.onrender.com/book/add', 
+          { name, author }, 
+          {
             headers: {
-                'Authorization': `Bearer ${yourToken}`
-            }
-        })
+              'Authorization': `Bearer ${token}` // Include token in headers
+            },
+            withCredentials: true
+          })
         .then(res => { 
             if (res.data.added) {
                 navigate('/books');
             } else {
-                console.log(res);
+                console.log(res.data.message);
             }
         })
         .catch(err => console.log(err));
@@ -49,15 +51,6 @@ const AddBook = () => {
                         onChange={(e) => setAuthor(e.target.value)}
                     />
                 </div>
-                {/* <div className="form-group">
-                    <label htmlFor="image">Image URL:</label>
-                    <input
-                        type="text"
-                        id="image"
-                        name="image"
-                        onChange={(e) => setImageUrl(e.target.value)}
-                    />
-                </div> */}
                 <button type="submit">Add</button>
             </form>
         </div>
