@@ -1,0 +1,35 @@
+/* Hero.css */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #301934;
+    color: #ffc107;
+    padding: 30px 10px;
+    min-height: 92vh;
+  }
+  
+  .hero-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .hero-text {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-description {
+    font-size: 1.2rem;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-image {
+    width: 100%;
+    max-width: 600px;
+    background: url('Images/home page.png') center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 300px;
+  }
