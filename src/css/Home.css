@@ -24,12 +24,11 @@
     max-width: 400px;
     margin-bottom: 20px;
   }
-  
   .hero-image {
     width: 100%;
     max-width: 600px;
-    background: url('Images/home page.png') center;
+    background: url('/Images/home%20page.png') center;
     background-size: cover;
     background-repeat: no-repeat;
     height: 300px;
-  }
+}
