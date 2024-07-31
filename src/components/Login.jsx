@@ -9,18 +9,18 @@ const Login = ({ setRoleVar }) => {
   const [role, setRole] = useState('admin');
   const navigate = useNavigate();
 
-  axios.defaults.withCredentials = true;
-
   const handleSubmit = () => {
     axios.post('https://e-assignment-platform-backend.onrender.com/auth/login', { username, password, role })
       .then(res => {
         console.log('Response data:', res.data);
-        if (res.data.login && res.data.role === 'admin') {
-          setRoleVar('admin');
-          navigate('/dashboard');
-        } else if (res.data.login && res.data.role === 'student') {
-          setRoleVar('student');
-          navigate('/');
+        if (res.data.login) {
+          localStorage.setItem('token', res.data.token); // Store JWT in local storage
+          setRoleVar(res.data.role);
+          if (res.data.role === 'admin') {
+            navigate('/dashboard');
+          } else if (res.data.role === 'student') {
+            navigate('/');
+          }
         } else {
           console.error('Login failed:', res.data.message);
         }
