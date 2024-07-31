@@ -38,7 +38,7 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 380px) {
   .hero {
     flex-direction: column; /* Stack items vertically on tablets and smaller screens */
     padding-inline: 20px;
