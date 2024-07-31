@@ -38,11 +38,7 @@
 }
 
 /* Responsive Styles */
-<<<<<<< HEAD
-@media (max-width: 768px) {
-=======
 @media (max-width: 380px) {
->>>>>>> 61a64e4d89feec46df8c1388494c05ae1dd385f1
   .hero {
     flex-direction: column; /* Stack items vertically on tablets and smaller screens */
     padding-inline: 20px;
