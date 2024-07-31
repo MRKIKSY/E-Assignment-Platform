@@ -1,3 +1,4 @@
+// AddStudent.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -12,15 +13,15 @@ const AddStudent = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Retrieve admin token from local storage or wherever it is stored
-        const token = localStorage.getItem('adminToken'); 
+        // Retrieve the admin token from local storage
+        const token = localStorage.getItem('adminToken');
 
         axios.post('https://e-assignment-platform-backend.onrender.com/student/register', 
           { roll, username, password, grade },
           { 
             withCredentials: true,
             headers: {
-              Authorization: `Bearer ${token}` // Send token in authorization header
+              Authorization: `Bearer ${token}` // Include the token in the Authorization header
             }
           })
           .then(res => { 
@@ -29,7 +30,9 @@ const AddStudent = () => {
               }
               console.log(res);
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+              console.error("Error:", err.response?.data || err.message);
+          });
     };
 
     return (
@@ -38,19 +41,19 @@ const AddStudent = () => {
                 <h2>Add Student</h2>
                 <div className="form-group">
                     <label htmlFor="roll">Roll No:</label>
-                    <input type="text" id="roll" name="roll" onChange={(e) => setRoll(e.target.value)}/>
+                    <input type="text" id="roll" name="roll" onChange={(e) => setRoll(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="username">User Name:</label>
-                    <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)}/>
+                    <input type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="grade">Grade:</label>
-                    <input type="text" id="grade" name="grade" onChange={(e) => setGrade(e.target.value)}/>
+                    <input type="text" id="grade" name="grade" onChange={(e) => setGrade(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <button type="submit">Register</button>
             </form>
