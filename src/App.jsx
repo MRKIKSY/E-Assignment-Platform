@@ -13,37 +13,33 @@ import EditBook from "./components/EditBook";
 import DeleteBook from "./components/DeleteBook";
 
 function App() {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('')
 
+  axios.defaults.withCredentials = true;
   useEffect(() => {
-    // Check the user's status, assuming you no longer need a token or cookie
-    axios.get('https://e-assignment-platform-backend.onrender.com/auth/verify')
-      .then(res => {
-        if (res.data.login) {
-          setRole(res.data.role);
-        } else {
-          setRole(''); 
-        }
-      })
-      .catch(err => {
-        console.error("Verify request error:", err);
-        setRole(''); // Clear role on error
-      });
-  }, []);
-
+    axios.get('http://localhost:3001/auth/verify')
+    .then(res => {
+      if(res.data.login) {
+        setRole(res.data.role)
+      } else {
+       setRole('') 
+      }
+      console.log(res)
+    }).catch(err => console.log(err))
+  }, [])
   return (
     <BrowserRouter>
-      <Navbar role={role} />
+      <Navbar role = {role}/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/books" element={<Books role={role} />} />
-        <Route path="/login" element={<Login setRoleVar={setRole} />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/addstudent" element={<AddStudent />} />
-        <Route path="/logout" element={<Logout setRole={setRole} />} />
-        <Route path="/addbook" element={<AddBook />} />
-        <Route path="/book/:id" element={<EditBook />} />
-        <Route path="/delete/:id" element={<DeleteBook />} />
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/books" element={<Books role = {role}/>}></Route>
+        <Route path="/login" element={<Login setRoleVar = {setRole}/>}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/addstudent" element={<AddStudent />}></Route>
+        <Route path="/logout" element={<Logout setRole = {setRole}/>}></Route>
+        <Route path="/addbook" element={<AddBook />}></Route>
+        <Route path="/book/:id" element={<EditBook />}></Route>
+        <Route path="/delete/:id" element={<DeleteBook />}></Route>
       </Routes>
     </BrowserRouter>
   );
