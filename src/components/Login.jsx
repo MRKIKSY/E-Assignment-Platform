@@ -9,13 +9,17 @@ const Login = ({ setRoleVar }) => {
   const [role, setRole] = useState('admin');
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios.post('https://e-assignment-platform-backend.onrender.com/auth/login', { username, password, role })
       .then(res => {
         console.log('Response data:', res.data);
         if (res.data.login) {
-          localStorage.setItem('token', res.data.token); // Store JWT in local storage
+          // Store JWT in local storage
+          localStorage.setItem('token', res.data.token);
           setRoleVar(res.data.role);
+          
+          // Navigate based on user role
           if (res.data.role === 'admin') {
             navigate('/dashboard');
           } else if (res.data.role === 'student') {
@@ -34,37 +38,43 @@ const Login = ({ setRoleVar }) => {
     <div className='login-page'>
       <div className="login-container">
         <h2>Login</h2>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            placeholder='Enter Username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            placeholder='Enter Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="role">Role:</label>
-          <select
-            name="role"
-            id="role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="admin">Teacher</option>
-            <option value="student">Student</option>
-          </select>
-        </div>
-        <button className='btn-login' onClick={handleSubmit}>Login</button>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              placeholder='Enter Username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              placeholder='Enter Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="role">Role:</label>
+            <select
+              name="role"
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="admin">Teacher</option>
+              <option value="student">Student</option>
+            </select>
+          </div>
+          <button type="submit" className='btn-login'>Login</button>
+        </form>
       </div>
     </div>
   );
