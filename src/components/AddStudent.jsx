@@ -11,9 +11,18 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Retrieve admin token from local storage or wherever it is stored
+        const token = localStorage.getItem('adminToken'); 
+
         axios.post('https://e-assignment-platform-backend.onrender.com/student/register', 
           { roll, username, password, grade },
-          { withCredentials: true })  // Ensure cookies are sent with the request
+          { 
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}` // Send token in authorization header
+            }
+          })
           .then(res => { 
               if (res.data.registered) {
                   navigate('/dashboard');
