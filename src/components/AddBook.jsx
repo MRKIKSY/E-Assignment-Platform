@@ -10,7 +10,7 @@ const AddBook = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:3001/book/add', {name, author, })
+        axios.post('https://e-assignment-platform-backend.onrender.com/book/add', {name, author, })
         .then(res => { 
             if(res.data.added) {
                 navigate('/books')

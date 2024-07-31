@@ -21,7 +21,7 @@ const EditBook = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.put('http://localhost:3001/book/book/'+id, {name, author, })
+        axios.put('https://e-assignment-platform-backend.onrender.com/book/book/'+id, {name, author, })
         .then(res => { 
             if(res.data.updated) {
                 navigate('/books')
