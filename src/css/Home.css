@@ -1,10 +1,12 @@
 /* Hero.css */
 .hero {
   display: flex;
+  flex-direction: row; /* Default layout */
   background-color: #301934;
   color: #ffc107;
   height: 92vh;
   padding-inline: 30px;
+  box-sizing: border-box; /* Ensure padding is included in height */
 }
 
 .hero-content {
@@ -30,6 +32,64 @@
 .hero-image {
   flex: 1;
   background: url('Images/home page.png') center;
-  background-size: 90%;
+  background-size: cover; /* Ensure the image covers the container */
   background-repeat: no-repeat;
+  height: 100%; /* Make sure the image covers the full height */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column; /* Stack items vertically on tablets and smaller screens */
+    padding-inline: 20px;
+    height: auto; /* Allow height to adjust based on content */
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .hero-text {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+
+  .hero-image {
+    width: 100%; /* Full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    background-size: contain; /* Adjust background size */
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-inline: 10px;
+  }
+
+  .hero-text {
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+    max-width: 250px;
+    margin-bottom: 10px;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto; /* Ensure height adjusts based on content */
+    background-size: contain; /* Adjust background size for small screens */
+    margin-top: 15px;
+  }
 }
