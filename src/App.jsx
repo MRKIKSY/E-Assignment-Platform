@@ -23,13 +23,12 @@ function App() {
         if (res.data.login) {
           setRole(res.data.role);
         } else {
-          setRole('');
+          setRole(''); 
         }
-        console.log('Verify response:', res);
       })
       .catch(err => {
-        console.error('Verify request error:', err);
-        setRole(''); // Ensure role is reset on error
+        console.error("Verify request error:", err);
+        setRole(''); // Clear role on error
       });
   }, []);
 
