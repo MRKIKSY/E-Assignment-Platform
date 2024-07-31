@@ -11,14 +11,17 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('https://e-assignment-platform-backend.onrender.com/student/register', {roll, username, password, grade})
-        .then(res => { 
-            if(res.data.registered) {
-                navigate('/dashboard')
-            }
-            console.log(res)
-        })
-        .catch(err => console.log(err))
+        axios.post('https://e-assignment-platform-backend.onrender.com/student/register', 
+          { roll, username, password, grade },
+          { withCredentials: true })
+          .then(res => { 
+              if(res.data.registered) {
+                  navigate('/dashboard')
+              }
+              console.log(res)
+          })
+          .catch(err => console.log(err));
+          
       }
 
   return (
