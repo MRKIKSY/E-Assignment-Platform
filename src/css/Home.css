@@ -31,11 +31,12 @@
 
 .hero-image {
   flex: 1;
-  background: url('Images/home page.png') center;
-  background-size: cover; /* Ensure the image covers the container */
+  background: url('/Images/home page.png') center;
+  background-size: cover;
   background-repeat: no-repeat;
-  height: 100%; /* Make sure the image covers the full height */
+  height: 100%;
 }
+
 
 /* Responsive Styles */
 @media (max-width: 380px) {
