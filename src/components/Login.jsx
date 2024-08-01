@@ -6,19 +6,22 @@ import axios from 'axios';
 const Login = ({ setRoleVar }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('admin');
+  const [role, setRole] = useState('admin'); // Default role as 'admin'
+  const [error, setError] = useState(''); // Error state for displaying login errors
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios.post('https://e-assignment-platform-backend.onrender.com/auth/login', { username, password, role })
       .then(res => {
         console.log('Response data:', res.data);
         if (res.data.login) {
-          // Store JWT in local storage
-          localStorage.setItem('token', res.data.token);
+          // Store JWT in local storage with different keys based on the role
+          const tokenKey = role === 'admin' ? 'adminToken' : 'studentToken';
+          localStorage.setItem(tokenKey, res.data.token);
           setRoleVar(res.data.role);
-          
+
           // Navigate based on user role
           if (res.data.role === 'admin') {
             navigate('/dashboard');
@@ -26,10 +29,12 @@ const Login = ({ setRoleVar }) => {
             navigate('/');
           }
         } else {
+          setError(res.data.message); // Set error message
           console.error('Login failed:', res.data.message);
         }
       })
       .catch(err => {
+        setError('Error during login. Please try again.');
         console.error('Error during login:', err);
       });
   };
@@ -73,6 +78,7 @@ const Login = ({ setRoleVar }) => {
               <option value="student">Student</option>
             </select>
           </div>
+          {error && <div className="error-message">{error}</div>} {/* Display error message */}
           <button type="submit" className='btn-login'>Login</button>
         </form>
       </div>
