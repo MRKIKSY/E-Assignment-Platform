@@ -12,10 +12,15 @@ const AddStudent = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
         // Retrieve the admin token from local storage
         const token = localStorage.getItem('adminToken');
-
+    
+        if (!token) {
+            console.error("No admin token found. Please log in.");
+            return;
+        }
+    
         axios.post('https://e-assignment-platform-backend.onrender.com/student/register', 
           { roll, username, password, grade },
           { 
@@ -27,13 +32,15 @@ const AddStudent = () => {
           .then(res => { 
               if (res.data.registered) {
                   navigate('/dashboard');
+              } else {
+                  console.error("Registration failed:", res.data.message);
               }
-              console.log(res);
           })
           .catch(err => {
               console.error("Error:", err.response?.data || err.message);
           });
     };
+    
 
     return (
         <div className="student-form-container">
