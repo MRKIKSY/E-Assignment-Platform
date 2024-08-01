@@ -13,8 +13,7 @@ const Login = ({ setRoleVar }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('https://e-assignment-platform-backend.onrender.com/auth/login', { username, password, role }, { withCredentials: true })
-
+    axios.post('https://e-assignment-platform-backend.onrender.com/auth/login', { username, password, role })
       .then(res => {
         console.log('Response data:', res.data);
         if (res.data.login) {
