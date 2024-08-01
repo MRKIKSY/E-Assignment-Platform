@@ -10,7 +10,7 @@ const AddBook = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-
+      
         axios.post('https://e-assignment-platform-backend.onrender.com/book/add', 
           { name, author }, 
           {
@@ -20,14 +20,15 @@ const AddBook = () => {
             withCredentials: true
           })
         .then(res => { 
-            if (res.data.added) {
-                navigate('/books');
-            } else {
-                console.log(res.data.message);
-            }
+          if (res.data.added) {
+            navigate('/books');
+          } else {
+            console.log(res.data.message);
+          }
         })
         .catch(err => console.log(err));
-    };
+      };
+      
 
     return (
         <div className="student-form-container">
